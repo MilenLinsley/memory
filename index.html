@@ -1,1 +1,120 @@
-hello world
+<style>
+.memory_box{
+  background-color:orange;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-size:50px;
+}
+</style>
+<h1>Memory Game</h1>
+<table>
+  <tr>
+  <td>
+   <div class="memory_box" id="box_0"></div>
+  </td>
+  <td>
+     <div class="memory_box" id="box_1"></div>
+  </td>
+<td>
+       <div class="memory_box" id="box_2"></div>
+    </td>
+    <td>
+       <div class="memory_box" id="box_3"></div>
+    </td>
+    </tr>
+    <tr>
+      <td>
+      <div class="memory_box" id="box_4"></div>
+    </td>
+    <td>
+      <div class="memory_box" id="box_5"></div>
+      </td>
+      <td>
+        <div class="memory_box" id="box_6"></div>
+    </td>
+   <td>
+     <div class="memory_box" id="box_7"></div>
+     </td>
+     </tr>
+ </table>
+<script src="jquery-3.6.0.min.js"></script>
+<script>
+howdy = "hello world";
+alert(howdy);
+card_letters = ["a", "b,", "c", "d", "a", "b", "c", "d"];
+visible_letters = [];
+selected_boxes = [];
+card_obj = {
+  card_letters: [
+"a",  //box 0
+"b",  //box 1
+"c",  //box 2
+"d",  //box 3
+"a",  //box 4
+"b",  //box 5
+"c",  //box 6
+"d"   //box 7
+],
+ visible_letters: [],
+ selected_boxes: []
+};
+$(".memory_box").on("click", function(){
+  alert("you clicked a box");
+});
+
+$(".memory_box").on("click", function(){
+  //console.log(this.id.replace("box_",""));
+
+  $(this).html("hi there");
+});
+
+$(".memory_box").on("click", function(){
+  var this_index = this.id.replace("box_","");
+  var this_letter = card_obj["card_letters"][this_index];
+  $(this).html(this_letter);
+
+card_obj["selected_boxes"].push(this.id);
+
+card_obj["visible_letters"].push(this_letter);
+
+var cards_visible = card_obj["selected_boxes"].length;
+
+if(cards_visible == 2){
+  var first_letter = card_obj["visible_letters"][0];
+  var second_letter = card_obj["visible_letters"][1];
+  if(first_letter == second_letter){
+    setTimeout(function(){
+   var first_box = card_obj["selected_boxes"][0];
+    var second_box = card_obj["selected_boxes"][1];
+    $("#" + first_box).fadeOut();
+    $("#" + second_box).fadeOut();
+  }, 2000);
+} else {
+  setTimeout(function(){
+    $(".memory_box").html("");
+  },2000);
+}
+if(first_letter == second_letter){
+  setTimeout(function(){
+    var first_box = card_obj["selected_boxes"][0];
+    var second_box = card_obj["selected_boxes"][1];
+    $("#" + first_box).fadeOut();
+    $("#" + second_box). fadeOut();
+    card_obj["selected_boxes"] = [];
+    card_obj["visible_letters"] = [];
+  }, 2000);
+} else {
+  setTimeout(function(){
+    $(".memory_box").html("");
+    card_obj["selected_boxes"] = [];
+    card_obj["visible_letters"] = [];
+    },2000);
+function shuffleArray(card_obj["card_letters"]); {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+</script>
